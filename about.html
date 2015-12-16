@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Suzanne Conway - About</title>
+	<meta name="description" content="Blueprint: A basic template for a responsive multi-level menu" />
+	<meta name="keywords" content="blueprint, template, html, css, menu, responsive, mobile-friendly" />
+	<meta name="author" content="martin rowe" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- food icons -->
+	<link rel="stylesheet" type="text/css" href="css/organicfoodicons.css" />
+	<!-- demo styles -->
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<!-- menu styles -->
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<script src="js/modernizr-custom.js"></script>
+</head>
+
+<body>
+	<!-- Main container -->
+	<div class="container">
+		<!-- Blueprint header -->
+		<header class="bp-header cf">
+			<div class="dummy-logo">
+			<h2 class="dummy-heading">Suzanne Conway</p>
+			</div>
+		<!--	<div class="bp-header__main">
+				<h1 class="bp-header__title">Suzanne Conway</h1>
+			</div> -->
+		</header>
+		<button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
+		<nav id="ml-menu" class="menu">
+			<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+			<div class="menu__wrap">
+				<ul data-menu="main" class="menu__level">
+					<li class="menu__item"><a class="menu__link" href="index.html">Home</a></li>
+					<li class="menu__item"><a class="menu__link" data-submenu="submenu-2" href="#">Poems</a></li>
+					<li class="menu__item"><a class="menu__link" data-submenu="submenu-3" href="about.html">About</a></li>
+					<li class="menu__item"><a class="menu__link" data-submenu="submenu-3" href="#">Contact</a></li>
+				</ul>
+				<!-- Submenu 2 -->
+				<ul data-menu="submenu-2" class="menu__level">
+					<li class="menu__item"><a class="menu__link" href="sherbet.html">Sherbet</a></li>
+					<li class="menu__item"><a class="menu__link" href="grandfather.html">Grandfather</a></li>
+					<li class="menu__item"><a class="menu__link" href="howThingsAre.html">How Things Are</a></li>
+					<li class="menu__item"><a class="menu__link" href="mrCarter.html">Mr Carter</a></li>
+					<li class="menu__item"><a class="menu__link" href="shesLeavingHome.html">She's Leaving Home</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="content">
+			<!-- Ajax loaded content here -->
+			<!--
+<p class = "info_extend"></p>
+<p class = "info_centre">Suzanne Conway</p>
+<p class = "info_extend"></p> -->
+<figure>
+						<img src="suzanne.jpg" alt="suzanne conway" />
+					</figure>
+
+
+<p class = "info">Suzanne Conway was awarded an MA (Distinction) in Creative and Critical Writing from Sussex University in 1998 and won the Asham Award for Poetry that same year; she won the Live Literature Fresh Talent Poetry Prize in 2002. She has published widely in magazines, including: Poetry Review, The North, The Rialto, Smiths Knoll, Seam, Magma, Ambit and The London Magazine. She has been mentored by John Burnside and published the poetry and prose they worked on together in the anthology Don’t Think of Tigers. She is also published in The Captain’s Tower: Seventy Poets Celebrate Bob Dylan at Seventy and Newspaper Taxis: Poetry after the Beatles (Seren).</p> 
+<!-- <p class = "info_extend_about"> -->    
+<p class = "info"> 
+She was awarded an Academic Excellence Scholarship to complete a Ph.D in Creative and Critical Writing; she is studying the poetry of Edward Thomas. She is completing her first collection of poetry and has performed her work at The Essex Poetry Festival, Poetry Wivenhoe, The Troubadour, The Torriano and The Betsey Trotwood. 
+</p>
+<p class = "info">
+When Suzanne isn't writing, she relishes swimming in the sea, running the hills and riding her bicycle very fast. This is punctuated with lots of lying down.
+</p>
+
+</div>
+	</div>
+	<!-- /view -->
+	<script src="js/classie.js"></script>
+	                         <!--<script src="js/dummydata.js"></script>-->
+	<script src="js/main.js"></script>
+	<script>
+	(function() {
+		var menuEl = document.getElementById('ml-menu'),
+			mlmenu = new MLMenu(menuEl, {
+				breadcrumbsCtrl : true, // show breadcrumbs
+				initialBreadcrumb : 'Home', // initial breadcrumb text
+				backCtrl : true, // show back button
+				// itemsDelayInterval : 60, // delay between each menu item sliding animation
+				//onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+			});
+
+		// mobile menu toggle
+		var openMenuCtrl = document.querySelector('.action--open'),
+			closeMenuCtrl = document.querySelector('.action--close');
+
+		openMenuCtrl.addEventListener('click', openMenu);
+		closeMenuCtrl.addEventListener('click', closeMenu);
+
+		function openMenu() {
+			classie.add(menuEl, 'menu--open');
+		}
+
+		function closeMenu() {
+			classie.remove(menuEl, 'menu--open');
+		}
+
+		// simulate grid content loading
+		var gridWrapper = document.querySelector('.content');
+
+		function loadDummyData(ev, itemName) {
+			ev.preventDefault();
+
+			closeMenu();
+			gridWrapper.innerHTML = '';
+			classie.add(gridWrapper, 'content--loading');
+			setTimeout(function() {
+				classie.remove(gridWrapper, 'content--loading');
+				gridWrapper.innerHTML = '<ul class="products">' + dummyData[itemName] + '<ul>';
+			}, 700);
+		}
+	})();
+	</script>
+</body>
+
+</html>
